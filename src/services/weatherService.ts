@@ -2,7 +2,10 @@ import axios from "axios";
 import type { CurrentWeather, ForecastResponse } from "../types/weather";
 
 // Need to do something in TypeScript to make 'process.env' readable
-const API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
+// Solution is to use 'import.meta.env' instead because Vite doesn't expose Node's
+// process.env to the browser. It uses 'import.meta.env' and only exposes variables that start with
+// "VITE_".
+const API_KEY = import.meta.env.VITE_REACT_APP_OPENWEATHER_API_KEY;
 const BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
 export const weatherService = {
